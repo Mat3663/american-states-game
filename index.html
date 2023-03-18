@@ -45,6 +45,8 @@ let currentScore = 0;
 const gameTimeInSeconds = 120;
 let timeLeft = gameTimeInSeconds;
 let countdownInterval = null;
+let gameStarted = false;
+
 
 function endGame() {
     submitButton.removeEventListener('click', onSubmit);
@@ -65,6 +67,7 @@ function updateCountdown() {
 }
 
 function startGame() {
+    gameStarted = true;
     countdownInterval = setInterval(updateCountdown, 1000);
     startButton.style.display = 'none';
 }
@@ -78,6 +81,9 @@ function updateProgressBar() {
 }
 
 function onSubmit() {
+    if (!gameStarted) {
+        return;
+    }
     const userGuess = userInput.value.trim().toLowerCase();
     userInput.value = '';
 
