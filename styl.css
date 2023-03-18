@@ -1,0 +1,164 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin-right: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+button {
+    font-size: 1rem;
+    background-color: #8b4513;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #8b4513;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+    margin: 10px;
+    padding: 0.5rem;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+
+/* style.css - Ajout des animations */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes highlight {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 0 0 5px 1px #8b4513;
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+li {
+    animation: fadeIn 0.6s ease-in;
+}
+
+input:focus {
+    outline: none;
+    animation: highlight 1s ease-in-out;
+}
+/* style.css - Ajout de l'image d'arrière-plan */
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://media.discordapp.net/attachments/990816819654852648/1086642971857920131/Amorent_a_map_of_united_states_of_america_for_a_background_of_a_7030c4e9-a237-43eb-81e2-50b508763093.png?width=1026&height=1026');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex; /* Ajout pour centrer verticalement */
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* style.css - Styles pour la barre de progression */
+
+#progressBarContainer {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: #8b4513;
+    border-radius: 5px;
+    transition: width 0.5s;
+}
+#countdownBarContainer,
+#progressBarContainer {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#countdownBar,
+#progressBar {
+    height: 100%;
+    border-radius: 5px;
+}
+
+#countdownBar {
+    background-color: #8b4513 ;
+}
+
+#progressBar {
+    background-color: #8b4513;
+}
+.startButton {
+    background-color: #8b4513
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.startButton:hover {
+    background-color: #d32f2f;
+}

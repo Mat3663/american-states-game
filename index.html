@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu des États Américains</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Jeu des États Américains</h1>
+        <p>le but du jeu est d'encoder un maxium d'états américains en 120 secondes</p>
+        <button id="startButton" class="startButton">Start</button>
+        <p>Entrez le nom d'un état américain :</p>
+        <input id="userInput" type="text">
+        <button id="submit">Soumettre</button>
+        <p>Score : <span id="score">0</span></p>
+        <p>Progression :</p>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+        <ul id="statesList">
+        </ul>
+        <!-- Ajout du compte à rebours -->
+        <p>Temps restant : <span id="countdown">120</span> secondes</p>
+        <p>Temps restant :</p>
+<div id="countdownBarContainer">
+    <div id="countdownBar"></div>
+</div>
+
+
+    </div>
+    <script>
+       const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "Californie", "Colorado", "Connecticut", "Delaware", "Floride", "Géorgie", "Hawaï", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiane", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "Caroline du Nord", "Dakota du Nord", "Ohio", "Oklahoma", "Oregon", "Pennsylvanie", "Rhode Island", "Caroline du Sud", "Dakota du Sud", "Tennessee", "Texas", "Utah", "Vermont", "Virginie", "Washington", "Virginie-Occidentale", "Wisconsin", "Wyoming"];
+const userInput = document.getElementById('userInput');
+const submitButton = document.getElementById('submit');
+const score = document.getElementById('score');
+const statesList = document.getElementById('statesList');
+const progressBar = document.getElementById('progressBar');
+const countdownElement = document.getElementById('countdown');
+const countdownBar = document.getElementById('countdownBar');
+const totalStates = states.length;
+
+let guessedStates = [];
+let currentScore = 0;
+const gameTimeInSeconds = 120;
+let timeLeft = gameTimeInSeconds;
+let countdownInterval = null;
+
+function endGame() {
+    submitButton.removeEventListener('click', onSubmit);
+    userInput.removeEventListener('keydown', onEnterKey);
+    alert(`Le temps est écoulé ! Votre score est de ${currentScore} sur ${totalStates}.`);
+}
+
+function updateCountdown() {
+    timeLeft--;
+    countdownElement.innerText = timeLeft;
+    const countdownPercentage = (timeLeft / gameTimeInSeconds) * 100;
+    countdownBar.style.width = countdownPercentage + '%';
+
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        endGame();
+    }
+}
+
+function startGame() {
+    countdownInterval = setInterval(updateCountdown, 1000);
+    startButton.style.display = 'none';
+}
+
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', startGame);
+
+function updateProgressBar() {
+    const progressPercentage = (guessedStates.length / totalStates) * 100;
+    progressBar.style.width = progressPercentage + '%';
+}
+
+function onSubmit() {
+    const userGuess = userInput.value.trim().toLowerCase();
+    userInput.value = '';
+
+    for (const state of states) {
+        if (state.toLowerCase() === userGuess && !guessedStates.includes(state)) {
+            guessedStates.push(state);
+            currentScore++;
+            score.innerText = currentScore;
+            const listItem = document.createElement('li');
+            listItem.innerText = state;
+            statesList.appendChild(listItem);
+            updateProgressBar();
+            break;
+        }
+    }
+}
+
+function onEnterKey(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        submitButton.click();
+    }
+}
+
+submitButton.addEventListener('click', onSubmit);
+userInput.addEventListener('keydown', onEnterKey);
+
+    </script> 
+        
+</body>
+</html>
